@@ -1,11 +1,9 @@
 package org.meridor.arabica;
 
 import javafx.scene.Node;
+import javafx.scene.control.Labeled;
 import org.hamcrest.Matcher;
-import org.meridor.arabica.impl.DisabledMatcher;
-import org.meridor.arabica.impl.EnabledMatcher;
-import org.meridor.arabica.impl.NodeSelectorPresenceMatcher;
-import org.meridor.arabica.impl.VisibleMatcher;
+import org.meridor.arabica.impl.*;
 
 public class Matchers {
 
@@ -23,6 +21,10 @@ public class Matchers {
 
     public static Matcher<Node> containsSelector(String selector) {
         return new NodeSelectorPresenceMatcher(selector);
+    }
+
+    public static Matcher<Labeled> hasLabel(String label) {
+        return new HasLabelMatcher(label);
     }
 
 }

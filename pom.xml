@@ -19,6 +19,7 @@
 
     <modules>
         <module>arabica-matchers</module>
+        <module>arabica-actions</module>
     </modules>
 
     <dependencyManagement>
