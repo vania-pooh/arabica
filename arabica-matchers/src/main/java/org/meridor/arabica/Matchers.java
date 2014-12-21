@@ -5,6 +5,8 @@ import javafx.scene.control.Labeled;
 import org.hamcrest.Matcher;
 import org.meridor.arabica.impl.*;
 
+import java.util.Optional;
+
 public class Matchers {
 
     public static Matcher<Node> isEnabled() {
@@ -26,5 +28,10 @@ public class Matchers {
     public static Matcher<Labeled> hasLabel(String label) {
         return new HasLabelMatcher(label);
     }
+
+    public static Matcher<Optional> isPresent() {
+        return new PresentMatcher();
+    }
+
 
 }

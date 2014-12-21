@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>arabica-actions</artifactId>
+    <artifactId>arabica-core</artifactId>
+
+    <name>Arabica Core Classes</name>
 
     <dependencies>
         <dependency>
@@ -19,6 +21,11 @@
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.meridor.arabica</groupId>
+            <artifactId>arabica-matchers</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

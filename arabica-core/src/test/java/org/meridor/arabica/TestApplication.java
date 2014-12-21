@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class TestApplication extends Application {
 
     private int clicksNumber = 0;
@@ -21,9 +23,7 @@ public class TestApplication extends Application {
         Button button = new Button();
         button.setId("button");
         button.setText("Click me!");
-        button.setOnMouseClicked(event -> {
-            clicksNumber++;
-        });
+        button.setOnMouseClicked(event -> clicksNumber++);
         Scene scene = new Scene(new Pane(button));
         stage.setScene(scene);
         stage.show();
