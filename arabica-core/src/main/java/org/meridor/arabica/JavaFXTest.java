@@ -4,22 +4,22 @@ import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.meridor.arabica.support.ArabicaInvocationHandler;
-import org.meridor.arabica.support.ClickSupport;
-import org.meridor.arabica.support.LookupSupport;
-import org.meridor.arabica.support.PrimaryStageAware;
-import org.meridor.arabica.support.impl.ClickSupportImpl;
+import org.meridor.arabica.support.*;
+import org.meridor.arabica.support.impl.MiscSupportImpl;
+import org.meridor.arabica.support.impl.MouseSupportImpl;
 import org.meridor.arabica.support.impl.LookupSupportImpl;
 import org.meridor.arabica.support.settings.ClickSettings;
 
 import java.lang.reflect.Proxy;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
-public abstract class JavaFXTest<T extends Application> implements LauncherAware, PrimaryStageAware, LookupSupport, ClickSupport {
+public abstract class JavaFXTest<T extends Application> implements LauncherAware, PrimaryStageAware, LookupSupport, MouseSupport, MiscSupport {
 
     private final Launcher<T> launcher;
-    private ClickSupport clickSupport;
+    private MouseSupport mouseSupport;
     private LookupSupport lookupSupport;
+    private MiscSupport miscSupport;
 
     public JavaFXTest() {
         this.launcher = Launcher.from(getApplicationClass());
@@ -38,7 +38,8 @@ public abstract class JavaFXTest<T extends Application> implements LauncherAware
      */
     private void wireSupportClasses() {
         this.lookupSupport = createProxyIfNeeded(LookupSupport.class, new LookupSupportImpl(this));
-        this.clickSupport = createProxyIfNeeded(ClickSupport.class, new ClickSupportImpl());
+        this.mouseSupport = createProxyIfNeeded(MouseSupport.class, new MouseSupportImpl());
+        this.miscSupport = createProxyIfNeeded(MiscSupport.class, new MiscSupportImpl());
     }
 
     private <S> S createProxyIfNeeded(Class<S> interfaceToProxy, S implementationClass) {
@@ -75,17 +76,17 @@ public abstract class JavaFXTest<T extends Application> implements LauncherAware
 
     @Override
     public void clickOn(Node node) {
-        clickSupport.clickOn(node);
+        mouseSupport.clickOn(node);
     }
 
     @Override
     public void customClickOn(Node node, ClickSettings clickSettings) {
-        clickSupport.customClickOn(node, clickSettings);
+        mouseSupport.customClickOn(node, clickSettings);
     }
 
     @Override
     public void doubleClickOn(Node node) {
-        clickSupport.doubleClickOn(node);
+        mouseSupport.doubleClickOn(node);
     }
 
     @Override
@@ -101,5 +102,15 @@ public abstract class JavaFXTest<T extends Application> implements LauncherAware
     @Override
     public Optional<Node> lookup(Stage stage, String selector) {
         return lookupSupport.lookup(stage, selector);
+    }
+
+    @Override
+    public void sleep(long duration, TimeUnit timeUnit) {
+        miscSupport.sleep(duration, timeUnit);
+    }
+
+    @Override
+    public void sleep(long milliseconds) {
+        miscSupport.sleep(milliseconds);
     }
 }

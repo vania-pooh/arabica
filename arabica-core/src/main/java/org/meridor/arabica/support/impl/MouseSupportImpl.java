@@ -1,12 +1,12 @@
 package org.meridor.arabica.support.impl;
 
 import javafx.scene.Node;
-import org.meridor.arabica.support.ClickSupport;
+import org.meridor.arabica.support.MouseSupport;
 import org.meridor.arabica.support.annotations.RequiresUI;
 import org.meridor.arabica.support.settings.ClickSettings;
 
 @RequiresUI
-public class ClickSupportImpl implements ClickSupport {
+public class MouseSupportImpl implements MouseSupport {
 
     @Override
     public void clickOn(Node node) {

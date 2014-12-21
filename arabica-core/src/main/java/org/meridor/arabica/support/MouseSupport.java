@@ -3,7 +3,7 @@ package org.meridor.arabica.support;
 import javafx.scene.Node;
 import org.meridor.arabica.support.settings.ClickSettings;
 
-public interface ClickSupport {
+public interface MouseSupport {
 
     void clickOn(Node node);
 
