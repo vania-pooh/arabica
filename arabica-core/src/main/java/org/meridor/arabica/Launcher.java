@@ -29,7 +29,7 @@ public class Launcher<T extends Application> {
     }
 
     public void launch() {
-        T instance = instatiate();
+        T instance = instantiate();
         launch(instance);
     }
 
@@ -51,7 +51,7 @@ public class Launcher<T extends Application> {
         return primaryStage;
     }
 
-    private T instatiate() {
+    private T instantiate() {
         try {
             return applicationClass.newInstance();
         } catch (Exception e) {
