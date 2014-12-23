@@ -64,6 +64,7 @@ public class Launcher<T extends Application> {
         this.applicationInstance = applicationInstance;
         final CountDownLatch launcherThreadLatch = new CountDownLatch(1);
         try {
+            PlatformImpl.startup(() -> {});
             applicationInstance.init();
             startApplication();
             launched.set(true);
@@ -76,8 +77,6 @@ public class Launcher<T extends Application> {
     }
 
     private void startApplication() {
-
-        PlatformImpl.startup(() -> {});
         withUI(() -> {
             try {
                 primaryStage = new Stage();

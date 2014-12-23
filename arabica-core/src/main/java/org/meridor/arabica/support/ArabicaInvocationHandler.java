@@ -1,7 +1,6 @@
 package org.meridor.arabica.support;
 
 import org.meridor.arabica.Launcher;
-import org.meridor.arabica.LauncherAware;
 import org.meridor.arabica.support.annotations.RequiresUI;
 
 import java.lang.reflect.InvocationHandler;
